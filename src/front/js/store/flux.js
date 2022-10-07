@@ -1,6 +1,13 @@
 const getState = ({ getStore, getActions, setStore }) => {
+
+
+
 	return {
 		store: {
+			baseUrl: "https://www.swapi.tech/api",
+			characters: [],
+			characteristics: [],
+			planets: [],
 			message: null,
 			demo: [
 				{
@@ -15,21 +22,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			]
 		},
+
 		actions: {
+			getCharacters: () => {
+				const store = getStore()
+				for (let index = 1; index <= 10; index++) {
+					const baseUrlChar = `${store.baseUrl}/people/${index}`
+					console.log(baseUrlChar);
+					fetch(baseUrlChar)
+						.then((response) => {
+							if (response.ok) {
+								return response.json()
+							}
+							throw new Error("Character fetch failed")
+						})
+						.then((data) => {
+							setStore({ characters: [...store.characters, data.result] })
+						})
+						.catch((error) => { console.log(error); })
+				}
+			},
+
+			getPlanets: async () => {
+				const store = getStore()
+				for (let index = 1; index <= 10; index++) {
+					try {
+						let response = await fetch(`${store.baseUrl}/planets/${index}`)
+						if (response.ok) {
+							let body = await response.json()
+							setStore({ planets: [...store.planets, body.result] })
+						} else if (response.status === 500) {
+							console.log(response.status);
+						}
+					} catch (error) {
+						console.log(error);
+					}
+				}
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
 			getMessage: async () => {
-				try{
+				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},

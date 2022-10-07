@@ -1,26 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { Characters } from "../component/Characters";
 import "../../styles/home.css";
+import { ItemCard } from "../component/ItemCard";
 
 export const Home = () => {
+
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		actions.getCharacters()
+		actions.getPlanets()
+		// actions.getVehicles()
+	}, [])
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+		<React.Fragment>
+			<div className="">
+				<div className="text-center mt-5">
+					<h1>Characters</h1>
+					{
+						store.characters.map((characterCard) => {
+							return <ItemCard item={characterCard} key={characterCard.uid} endpoint="characters" />
+						})
+					}
+				</div>
+				<div className="text-center mt-5">
+					<h1>Planets</h1>
+					{
+						store.planets.map((planet) => {
+							return <ItemCard item={planet} key={planet.uid} endpoint="planets" />
+						})
+					}
+				</div>
+				{/* <div className="text-center mt-5">
+				<h1>Vehicles</h1>
+				{
+					store.planets.map((planet) => {
+						return <ItemCard item={planet} key={planet.uid} endpoint="planets" />
+					})
+				}
+			</div> */}
 			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
-		</div>
+		</React.Fragment>
 	);
 };
