@@ -6,19 +6,16 @@ import starWarsLogo from "../../img/starwarslogo.png";
 export const Planet = () => {
 
     const [planet, setPlanet] = useState()
-
     const { store, actions } = useContext(Context);
     const { uid } = useParams()
 
     useEffect(() => {
-        actions.getPlanets()
         setPlanet(store.planets.find((planet) => {
             return planet.uid == uid
         }))
     }, [])
 
     return (
-
         <React.Fragment>
             <div className="container">
                 <div className="row d-flex justify-content-evenly">
@@ -40,7 +37,7 @@ export const Planet = () => {
                         </p>
                     </div>
                 </div>
-                <div className="row justify-content-center text-danger border-top border-danger mt-4 pt-4 text-center">
+                <div className="row justify-content-center text-danger border-top border-danger mt-4 pt-2 text-center">
                     <div className="col-2">
                         <p className="fw-bolder">Name</p>
                         <p>{planet && planet.properties.name}</p>
@@ -55,7 +52,7 @@ export const Planet = () => {
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Diameter</p>
-                        <p>12500km</p>
+                        <p>12500 km</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Orbital Period</p>

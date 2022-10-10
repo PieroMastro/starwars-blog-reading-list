@@ -7,12 +7,6 @@ export const Home = () => {
 
 	const { store, actions } = useContext(Context);
 
-	useEffect(() => {
-		actions.getCharacters()
-		actions.getPlanets()
-		actions.getVehicles()
-	}, [])
-
 	return (
 		<React.Fragment>
 			<div className="container">
@@ -20,11 +14,12 @@ export const Home = () => {
 				<div className=" carousel mb-5">
 					<div className="itemcard gap-5">
 						{
-							store.characters.map((character) => {
+							store.characters.map((character, index) => {
 								return <ItemCard
 									item={character}
 									key={character._id}
-									endpoint="characters" />
+									endpoint="characters"
+									index={index} />
 							})
 						}
 					</div>

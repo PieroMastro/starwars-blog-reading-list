@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import starWarsLogo from "../../img/starwarslogo.png";
 
 export const Navbar = () => {
+
 	return (
 		<nav className="navbar navbar-light bg-light sticky-top">
 			<div className="container">

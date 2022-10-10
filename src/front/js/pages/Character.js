@@ -6,25 +6,23 @@ import starWarsLogo from "../../img/starwarslogo.png";
 export const Character = () => {
 
     const [character, setCharacter] = useState()
-
     const { store, actions } = useContext(Context);
     const { uid } = useParams()
 
     useEffect(() => {
-        actions.getCharacters()
         setCharacter(store.characters.find((character) => {
             return character.uid == uid
         }))
     }, [])
 
     return (
-
         <React.Fragment>
             <div className="container">
                 <div className="row d-flex justify-content-evenly">
                     <img
-                        src={starWarsLogo}
-                        className="img-description col-6"
+                        src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`}
+                        className="img-description col-6 pt-3"
+                        style={{ width: "50%", height: "auto" }}
                         alt="..."
                     />
                     <div className="description col-6 text-center">
@@ -40,7 +38,7 @@ export const Character = () => {
                         </p>
                     </div>
                 </div>
-                <div className="row justify-content-center text-danger border-top border-danger mt-4 pt-4 text-center">
+                <div className="row justify-content-center text-danger border-top border-danger mt-3 pt-2 text-center">
                     <div className="col-2">
                         <p className="fw-bolder">Name</p>
                         <p>{character && character.properties.name}</p>
@@ -55,7 +53,7 @@ export const Character = () => {
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Height</p>
-                        <p>178cm</p>
+                        <p>178 cm</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Skin Color</p>
@@ -70,3 +68,4 @@ export const Character = () => {
         </React.Fragment>
     )
 };
+

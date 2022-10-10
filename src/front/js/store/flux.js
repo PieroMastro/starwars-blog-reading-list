@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		store: {
 			baseUrl: "https://www.swapi.tech/api",
-			characters: [],
+			characters: JSON.parse(localStorage.getItem("characters")) || [],
 			planets: [],
 			vehicles: [],
 			message: null,
@@ -38,9 +38,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.then((body) => {
 							setStore({ characters: [...store.characters, body.result] })
+							// localStorage.setItem("characters", JSON.stringify(store["characters"]))
 						})
 						.catch((error) => { console.log(error); })
 				}
+
 			},
 
 			getPlanets: async () => {
