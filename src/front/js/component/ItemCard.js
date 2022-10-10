@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
-import tatooineImg from "../../img/starwarslogo.png";
 
 export const ItemCard = ({ item, endpoint }) => {
 
@@ -14,7 +13,7 @@ export const ItemCard = ({ item, endpoint }) => {
                     className="card-img-top"
                     alt={item.properties.name} />
                 <div className="card-body d-flex flex-column justify-content-between">
-                    <h3 className="card-title mb-3">{item.properties.name}</h3>
+                    <h3 className="card-title mb-3 fw-bolder">{item.properties.name}</h3>
                     {/* This will get Characters properties */}
                     {item.properties.gender &&
                         <p className="card-text">
@@ -66,11 +65,11 @@ export const ItemCard = ({ item, endpoint }) => {
                     <div className="buttons-card d-flex justify-content-between">
                         <Link
                             to={`/${endpoint}/${item.uid}`}
-                            className="btn btn-primary">
+                            className="btn btn-outline-primary">
                             Learn more!
                         </Link>
                         <button
-                            className="btn btn-warning">
+                            className="btn btn-outline-warning">
                             ♥️
                         </button>
                     </div>
