@@ -20,9 +20,10 @@ export const Vehicle = () => {
             <div className="container">
                 <div className="row d-flex justify-content-evenly">
                     <img
-                        src={starWarsLogo}
-                        className="img-description col-6"
-                        alt="..."
+                        src={`https://starwars-visualguide.com/assets/img/vehicles/${uid}.jpg`}
+                        className="img-description col-6 pt-3"
+                        style={{ width: "26rem", height: "auto" }}
+                        alt={vehicle && vehicle.properties.name}
                     />
                     <div className="description col-6 text-center">
                         <h1 className="display-4 fw-bold">{vehicle && vehicle.properties.name}</h1>
@@ -37,30 +38,30 @@ export const Vehicle = () => {
                         </p>
                     </div>
                 </div>
-                <div className="row justify-content-center text-danger border-top border-danger mt-4 pt-2 text-center">
+                <div className="row justify-content-center text-danger border-top border-danger mt-3 pt-2 text-center">
                     <div className="col-2">
                         <p className="fw-bolder">Name</p>
                         <p>{vehicle && vehicle.properties.name}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Model</p>
-                        <p>Digger Crawler</p>
+                        <p>{vehicle && vehicle.properties.model}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Cost</p>
-                        <p>150000</p>
+                        <p>{vehicle && vehicle.properties.cost_in_credits} cr</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Passengers</p>
-                        <p>30</p>
+                        <p>{vehicle && vehicle.properties.passengers}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Length</p>
-                        <p>36.8 mts</p>
+                        <p>{vehicle && vehicle.properties.length} mts</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Vehicle Class</p>
-                        <p>wheeled</p>
+                        <p>{vehicle && vehicle.properties.vehicle_class}</p>
                     </div>
                 </div>
             </div>

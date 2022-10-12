@@ -22,3 +22,7 @@
     height: auto;
     display: flex;
 }
+
+.img-description {
+    width: 50%;
+}

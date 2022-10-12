@@ -20,9 +20,10 @@ export const Planet = () => {
             <div className="container">
                 <div className="row d-flex justify-content-evenly">
                     <img
-                        src={starWarsLogo}
-                        className="img-description col-6"
-                        alt="..."
+                        src={`https://starwars-visualguide.com/assets/img/planets/${uid}.jpg`}
+                        className="img-description col-6 pt-3"
+                        style={{ width: "26rem", height: "auto" }}
+                        alt={planet && planet.properties.name}
                     />
                     <div className="description col-6 text-center">
                         <h1 className="display-4 fw-bold">{planet && planet.properties.name}</h1>
@@ -37,30 +38,30 @@ export const Planet = () => {
                         </p>
                     </div>
                 </div>
-                <div className="row justify-content-center text-danger border-top border-danger mt-4 pt-2 text-center">
+                <div className="row justify-content-center text-danger border-top border-danger mt-3 pt-2 text-center">
                     <div className="col-2">
                         <p className="fw-bolder">Name</p>
                         <p>{planet && planet.properties.name}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Population</p>
-                        <p>2000000</p>
+                        <p>{planet && planet.properties.population}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Terrain</p>
-                        <p>grasslands, mountains</p>
+                        <p>{planet && planet.properties.terrain}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Diameter</p>
-                        <p>12500 km</p>
+                        <p>{planet && planet.properties.diameter} km</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Orbital Period</p>
-                        <p>264</p>
+                        <p>{planet && planet.properties.orbital_period} days</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Climate</p>
-                        <p>Temperature</p>
+                        <p>{planet && planet.properties.climate}</p>
                     </div>
                 </div>
             </div>

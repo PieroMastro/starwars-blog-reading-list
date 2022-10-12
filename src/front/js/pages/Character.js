@@ -22,8 +22,8 @@ export const Character = () => {
                     <img
                         src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`}
                         className="img-description col-6 pt-3"
-                        style={{ width: "50%", height: "auto" }}
-                        alt="..."
+                        style={{ width: "26rem", height: "auto" }}
+                        alt={character && character.properties.name}
                     />
                     <div className="description col-6 text-center">
                         <h1 className="display-4 fw-bold">{character && character.properties.name}</h1>
@@ -45,23 +45,23 @@ export const Character = () => {
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Birth Year</p>
-                        <p>2000</p>
+                        <p>{character && character.properties.birth_year}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Gender</p>
-                        <p>Male</p>
+                        <p>{character && character.properties.gender}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Height</p>
-                        <p>178 cm</p>
+                        <p>{character && character.properties.height} cm</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Skin Color</p>
-                        <p>Light</p>
+                        <p>{character && character.properties.skin_color}</p>
                     </div>
                     <div className="col-2">
                         <p className="fw-bolder">Eye Color</p>
-                        <p>Blue</p>
+                        <p>{character && character.properties.eye_color}</p>
                     </div>
                 </div>
             </div>
