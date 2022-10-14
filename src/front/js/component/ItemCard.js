@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const ItemCard = ({ item, endpoint }) => {
+
+    const { store, actions } = useContext(Context)
 
     return (
         <React.Fragment>
@@ -44,7 +47,7 @@ export const ItemCard = ({ item, endpoint }) => {
                     {item.properties.diameter &&
                         <p className="card-text">
                             <strong>Diameter: </strong>
-                            {item.properties.diameter}km
+                            {item.properties.diameter} km
                         </p>}
                     {/* This will get Vehicles properties */}
                     {item.properties.model &&
@@ -60,7 +63,7 @@ export const ItemCard = ({ item, endpoint }) => {
                     {item.properties.length &&
                         <p className="card-text">
                             <strong>Length: </strong>
-                            {item.properties.length}mts
+                            {item.properties.length} mts
                         </p>}
                     <div className="buttons-card d-flex justify-content-between">
                         <Link
@@ -69,8 +72,22 @@ export const ItemCard = ({ item, endpoint }) => {
                             Learn more!
                         </Link>
                         <button
+                            onClick={(e) => {
+                                if (store.favorites.find((favorite) => {
+                                    return favorite.name == item.properties.name
+                                })) {
+                                    let position = store.favorites.indexOf(store.favorites.find((favorite) => {
+                                        return favorite.name == item.properties.name
+                                    }))
+                                    actions.delFavorite(position)
+                                } else {
+                                    actions.addFavorite(item.properties.name)
+                                }
+                            }}
                             className="btn btn-outline-warning">
-                            ♥️
+                            {store.favorites.find((favorite, index) => {
+                                return favorite.name == item.properties.name
+                            }) ? <i className="fas fa-heart text-warning"></i> : <i className="far fa-heart text-warning"></i>}
                         </button>
                     </div>
                 </div>

@@ -4,9 +4,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		store: {
 			baseUrl: "https://www.swapi.tech/api",
-			characters: JSON.parse(localStorage.getItem("characters")) || [],
+			characters: [],
+			// JSON.parse(localStorage.getItem("characters")) ||
 			planets: [],
 			vehicles: [],
+			favorites: [],
 			message: null,
 			demo: [
 				{
@@ -38,7 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.then((body) => {
 							setStore({ characters: [...store.characters, body.result] })
-							// localStorage.setItem("characters", JSON.stringify(store["characters"]))
+							// for some reason couldn't save to localstorage
+							// localStorage.setItem("characters", JSON.stringify(body.result))
 						})
 						.catch((error) => { console.log(error); })
 				}
@@ -54,6 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							let body = await response.json()
 							setStore({ planets: [...store.planets, body.result] })
+							// localStorage.setItem("planets", JSON.stringify(body.result))
 						} else if (response.status === 500) {
 							console.log(response.status);
 						}
@@ -81,6 +85,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					}
 				}
+			},
+
+			addFavorite: (name) => {
+				const store = getStore()
+
+				const favs = [...store.favorites, { name: name }]
+				setStore({ favorites: favs })
+			},
+
+			delFavorite: (position) => {
+				const store = getStore()
+
+				const favs = store.favorites.filter((favorite, index) => index !== position)
+				setStore({ favorites: favs })
 			},
 
 			// Use getActions to call a function within a fuction
