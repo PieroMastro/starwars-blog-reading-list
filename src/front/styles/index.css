@@ -26,3 +26,9 @@
 .img-description {
     width: 50%;
 }
+
+.dropdown-btn:hover {
+    border: 0;
+    color: darkred;
+    cursor: pointer;
+}

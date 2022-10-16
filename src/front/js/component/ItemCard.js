@@ -87,7 +87,8 @@ export const ItemCard = ({ item, endpoint }) => {
                             className="btn btn-outline-warning">
                             {store.favorites.find((favorite, index) => {
                                 return favorite.name == item.properties.name
-                            }) ? <i className="fas fa-heart text-warning"></i> : <i className="far fa-heart text-warning"></i>}
+                            }) ? <i className="fa-solid fa-heart text-warning"></i>
+                                : <i className="fa-regular fa-heart text-warning"></i>}
                         </button>
                     </div>
                 </div>
