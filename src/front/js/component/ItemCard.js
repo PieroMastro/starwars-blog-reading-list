@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import tatooine from "../../img/tatooine.png";
 
 export const ItemCard = ({ item, endpoint }) => {
 
@@ -13,6 +14,10 @@ export const ItemCard = ({ item, endpoint }) => {
                 {/* The src use endpoint prop to set the correct URL for people, planets or vehicles */}
                 <img
                     src={`https://starwars-visualguide.com/assets/img/${endpoint}/${item.uid}.jpg`}
+                    // Need to fix planet/1 img
+                    // src={item.properties.uid != 1
+                    //     ? `https://starwars-visualguide.com/assets/img/${endpoint}/${item.uid}.jpg`
+                    //     : tatooine}
                     className="card-img-top"
                     alt={item.properties.name} />
                 <div className="card-body d-flex flex-column justify-content-between">
