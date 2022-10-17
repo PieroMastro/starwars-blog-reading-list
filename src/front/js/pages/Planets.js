@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import starWarsLogo from "../../img/starwarslogo.png";
+import tatooine from "../../img/tatooine.png";
 
 export const Planet = () => {
 
@@ -20,7 +20,7 @@ export const Planet = () => {
             <div className="container">
                 <div className="row d-flex justify-content-evenly">
                     <img
-                        src={`https://starwars-visualguide.com/assets/img/planets/${uid}.jpg`}
+                        src={uid == 1 ? tatooine : `https://starwars-visualguide.com/assets/img/planets/${uid}.jpg`}
                         className="img-description col-6 pt-3"
                         style={{ width: "26rem", height: "auto" }}
                         alt={planet && planet.properties.name}

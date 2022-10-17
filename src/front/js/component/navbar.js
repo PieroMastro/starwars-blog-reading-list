@@ -28,7 +28,9 @@ export const Navbar = () => {
 										className="d-flex flex-nowrap p-2"
 										key={index}>
 										<span className="dropdown-item">
-											{favorite.name}
+											<Link to={favorite.url}>
+												{favorite.name}
+											</Link>
 										</span>
 										<span>
 											<i className="dropdown-btn fa-solid fa-trash pt-2 pe-2"

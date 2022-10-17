@@ -13,11 +13,10 @@ export const ItemCard = ({ item, endpoint }) => {
             <div className="card mb-4" style={{ minWidth: "18rem" }}>
                 {/* The src use endpoint prop to set the correct URL for people, planets or vehicles */}
                 <img
-                    src={`https://starwars-visualguide.com/assets/img/${endpoint}/${item.uid}.jpg`}
-                    // Need to fix planet/1 img
-                    // src={item.properties.uid != 1
-                    //     ? `https://starwars-visualguide.com/assets/img/${endpoint}/${item.uid}.jpg`
-                    //     : tatooine}
+                    src={
+                        endpoint == 'planets' && item.uid == 1
+                            ? tatooine
+                            : `https://starwars-visualguide.com/assets/img/${endpoint}/${item.uid}.jpg`}
                     className="card-img-top"
                     alt={item.properties.name} />
                 <div className="card-body d-flex flex-column justify-content-between">
@@ -86,7 +85,8 @@ export const ItemCard = ({ item, endpoint }) => {
                                     }))
                                     actions.delFavorite(position)
                                 } else {
-                                    actions.addFavorite(item.properties.name)
+                                    let url = `/${endpoint}/${item.uid}`
+                                    actions.addFavorite(item.properties.name, url)
                                 }
                             }}
                             className="btn btn-outline-warning">

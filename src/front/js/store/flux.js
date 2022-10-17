@@ -40,8 +40,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 						.then((body) => {
 							setStore({ characters: [...store.characters, body.result] })
-							// for some reason couldn't save to localstorage
-							// localStorage.setItem("characters", JSON.stringify(body.result))
+							// // for some reason couldn't save to localstorage
+							// let elementsToSave = [...body.results]
+							// // console.log(elementsToSave);
+							// localStorage.setItem("characters", JSON.stringify(body.results))
 						})
 						.catch((error) => { console.log(error); })
 				}
@@ -87,10 +89,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addFavorite: (name) => {
+			addFavorite: (name, url) => {
 				const store = getStore()
 
-				const favs = [...store.favorites, { name: name }]
+				const favs = [...store.favorites, { name: name, url: url }]
 				setStore({ favorites: favs })
 			},
 
