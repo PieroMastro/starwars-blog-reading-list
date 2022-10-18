@@ -15,7 +15,7 @@ export const Navbar = () => {
 				<div className="ml-auto">
 					<div className="dropdown">
 						<button
-							className="btn btn-secondary dropdown-toggle"
+							className="btn btn-dark dropdown-toggle"
 							type="button"
 							data-bs-toggle="dropdown"
 							aria-expanded="false">
@@ -25,10 +25,13 @@ export const Navbar = () => {
 							{!store.favorites.length == 0 ? (
 								store.favorites.map((favorite, index) => {
 									return <li
-										className="d-flex flex-nowrap p-2"
+										className="d-flex flex-nowrap p-1"
 										key={index}>
 										<span className="dropdown-item">
-											<Link to={favorite.url}>
+											<Link
+												className="favs-menu"
+												style={{ textDecoration: 'none' }}
+												to={favorite.url}>
 												{favorite.name}
 											</Link>
 										</span>

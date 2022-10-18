@@ -59,7 +59,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.ok) {
 							let body = await response.json()
 							setStore({ planets: [...store.planets, body.result] })
-							// localStorage.setItem("planets", JSON.stringify(body.result))
 						} else if (response.status === 500) {
 							console.log(response.status);
 						}
